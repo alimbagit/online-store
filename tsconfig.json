@@ -1,8 +1,26 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "outDir": "./dist/",
     "sourceMap": true,
-    "jsx": "react"
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "declaration": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "typeRoots": [ /* List of folders to include type definitions from. */
+      "node_modules/@types",
+      "src/typings.d.ts"
+    ],
+    "esModuleInterop": false, 
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "exclude": ["node_modules"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -1,5 +1,4 @@
 import "./styles/app.scss";
-import Layout from "./components/layout-page";
 import React from "react";
 import { render } from "react-dom";
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, BrowserRouter } from "react-router-dom";
+
 const Navbar = () => (
   <div>
       <ul>
