@@ -1,26 +1,29 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./",
+    "baseUrl": "./src",
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es5",
-    "jsx": "react",
-    "declaration": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
     "moduleResolution": "node",
-    "typeRoots": [ /* List of folders to include type definitions from. */
-      "node_modules/@types",
-      "src/typings.d.ts"
-    ],
-    "esModuleInterop": false, 
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "jsx": "react",
+    "typeRoots": ["node_modules/@types", "src/typings"],
+    "paths": {
+      "redux": ["src/typings/redux"] // override library types with your alternative type-definitions in typings folder
+    }
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

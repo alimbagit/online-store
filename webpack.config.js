@@ -1,25 +1,38 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: {
+    app: path.resolve(__dirname, "src", "index.tsx"),
+  },
   output: {
-    path: __dirname + "/dist",
+    path: path.resolve(__dirname, 'dist'),
     filename: "bundle.js",
     publicPath: "/",
   },
   resolve: {
-    extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+    extensions: [".webpack.js", ".web.js", ".js", ".ts", ".tsx"],
   },
   module: {
     rules: [
       {
+        test: /\.html/,
+        use: ['html-loader']
+      },
+      {
         test: /\.(js|jsx)$/,
         use: "babel-loader",
-        exclude: [/node_modules/],
+        exclude: '/node_modules/',
       },
       {
         test: /\.(ts|tsx)$/,
-        use: "ts-loader",
+        exclude: '/node_modules/',
+        use: [
+          {
+            loader: "ts-loader",
+            options: { configFile: path.resolve(__dirname, "tsconfig.json") },
+          },
+        ],
       },
       {
         test: /\.(sass|scss)$/,
@@ -32,9 +45,8 @@ module.exports = {
       template: __dirname + "/src/public/index.html",
     }),
   ],
-  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   devServer: {
-    contentBase: "./src/public",
+    contentBase: path.resolve(__dirname, 'dist'),
     port: 7700,
     historyApiFallback: true,
   },
