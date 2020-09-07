@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Header = () => (
   <div>
     <h2>My Header</h2>
+    <Link to="/">Главная</Link>
     <Link to="/cart">Корзина</Link>
     <Navbar />
   </div>
