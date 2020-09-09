@@ -9,6 +9,7 @@ import Chekout from "./pages/chekout";
 const Index = () => (
   <Router>
     <Route exact path="/" component={Catalog} />
+    <Route path="/catalog" component={Catalog} />
     <Route exact path="/cart" component={Cart} />
     <Route exact path="/checkout" component={Chekout} />
   </Router>
