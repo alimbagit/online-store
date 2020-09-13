@@ -11,12 +11,17 @@
   "author": "al <alexaalexin1992@mail.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/react-redux": "^7.1.9",
+    "cuid": "2.1.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "7.2.0",
     "react-router-dom": "^5.2.0",
-    "cuid": "2.1.8"
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@types/webpack": "^4.41.22",
     "@babel/core": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",

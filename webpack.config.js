@@ -1,32 +1,38 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
+
+/** @type {import('webpack').Configuration} */
 module.exports = {
   entry: {
     app: path.resolve(__dirname, "src", "index.tsx"),
+
   },
+
+
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     publicPath: "/",
   },
   resolve: {
     extensions: [".webpack.js", ".web.js", ".js", ".ts", ".tsx"],
+    modules: ["node_modules", path.resolve(__dirname, "src")],
   },
   module: {
     rules: [
       {
         test: /\.html/,
-        use: ['html-loader']
+        use: ["html-loader"],
       },
       {
         test: /\.(js|jsx)$/,
         use: "babel-loader",
-        exclude: '/node_modules/',
+        exclude: "/node_modules/",
       },
       {
         test: /\.(ts|tsx)$/,
-        exclude: '/node_modules/',
+        exclude: "/node_modules/",
         use: [
           {
             loader: "ts-loader",
@@ -46,7 +52,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, "dist"),
     port: 7700,
     historyApiFallback: true,
   },

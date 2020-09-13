@@ -1,5 +1,5 @@
 import React, { ReactHTMLElement } from "react";
-import Header from "./header";
+import Header from "components/header";
 
 interface PropsLayout {
   children: JSX.Element;

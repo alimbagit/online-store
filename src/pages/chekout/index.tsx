@@ -1,5 +1,5 @@
 import React from "react";
-import LayoutPage from "../../components/layout-page";
+import LayoutPage from "components/layoutPage";
 
 const Chekout = () => (
   <LayoutPage>
