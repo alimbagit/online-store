@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CartInHeader from "./cartInHeader";
 
 const Header = () => (
   <div>
-    <h2>My Header</h2>
     <Link to="/catalog">Главная</Link>
-    <Link to="/cart">Корзина</Link>
+    <CartInHeader />
   </div>
 );
 export default Header;

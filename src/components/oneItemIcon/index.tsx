@@ -1,7 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { ItemInterface } from "data";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "redux/actions";
 import { CartState } from "redux/rootReducer";
 
@@ -12,7 +11,7 @@ import { CartState } from "redux/rootReducer";
 const OneItemIcon = (item: ItemInterface) => {
   const [stateButton, setStateButton] = useState(false);
 
-  const cartState = useSelector((state: CartState) => state);
+  const cartItemsState = useSelector((state: CartState) => state.items);
   const dispatch = useDispatch();
   const EventToCartListener = () => {
     if (stateButton) {
@@ -25,7 +24,7 @@ const OneItemIcon = (item: ItemInterface) => {
   };
 
   const CheckItemInCart = () => {
-    let index = cartState.findIndex((element) => element.id === item.id);
+    let index = cartItemsState.findIndex((element) => element.id === item.id);
     setStateButton(index != -1);
   };
 

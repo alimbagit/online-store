@@ -1,5 +1,3 @@
-import { ItemInterface } from "data";
-import { CartStateProps } from "./rootReducer";
 import { ADD_TO_CART, REMOVE_FROM_CART } from "./types";
 
 export interface OneCartItem{

@@ -1,8 +1,8 @@
 import { GetItemFromId, initializeItem } from "data";
 import React, { useEffect, useState } from "react";
-import { CartStateProps } from "redux/rootReducer";
+import { CartItemProps } from "redux/rootReducer";
 
-const OneItemInCart = (itemCart: CartStateProps) => {
+const OneItemInCart = (itemCart: CartItemProps) => {
 
   const [stateItem, setStateItem] = useState(initializeItem);
   useEffect(() => {

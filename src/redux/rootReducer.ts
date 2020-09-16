@@ -2,15 +2,18 @@ import { ItemInterface } from "data";
 import { CartActions } from "./actions";
 import { ADD_TO_CART, REMOVE_FROM_CART } from "./types";
 
-export interface CartStateProps {
+export interface CartItemProps {
   id: string;
   price: number;
   count: number;
 }
 
-export type CartState = CartStateProps[];
-
-const initialState: CartState = [];
+export interface CartState {
+  items: CartItemProps[];
+  totalPrice: number;
+  totalItems: number;
+}
+const initialState: CartState = { items: [], totalItems: 0, totalPrice: 0 };
 
 export const rootReducer = (
   state: CartState = initialState,
@@ -19,19 +22,26 @@ export const rootReducer = (
 
   switch (action.type) {
     case ADD_TO_CART:
-      let indexAdd = state.findIndex(
+      let indexAdd = state.items.findIndex(
         (element) => element.id === action.payload.id
       );
       indexAdd === -1
-        ? state.push({ id: action.payload.id, price: action.payload.price, count: 1 })
-        : state[indexAdd].count++;
+        ? state.items.push({ id: action.payload.id, price: action.payload.price, count: 1 })
+        : state.items[indexAdd].count++;
+      state.totalItems++;
+      state.totalPrice += action.payload.price;
       return state;
 
     case REMOVE_FROM_CART:
-      let indexRemove = state.findIndex(
+      let indexRemove = state.items.findIndex(
         (element) => element.id === action.payload
       );
-      indexRemove != -1 && state.splice(indexRemove, 1);
+      if (indexRemove != -1) {
+        state.totalItems-=state.items[indexRemove].count;
+        state.totalPrice -= state.items[indexRemove].price;
+        state.items.splice(indexRemove, 1);
+      }
+
       return state;
 
     default:

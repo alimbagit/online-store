@@ -5,7 +5,7 @@ import OneItemInCart from "components/oneItemInCart";
 import { CartState } from "redux/rootReducer";
 
 const Cart = () => {
-  const state = useSelector((state: CartState) => state);
+  const state = useSelector((state: CartState) => state.items);
   const [currentItemsCart, setCurrentItems] = useState(state);
 
   useEffect(() => {
