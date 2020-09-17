@@ -9,10 +9,10 @@ interface PropsOneCategoryIcon {
 const OneCategoryIcon = ({
   img,
   pathname,
-  description,
+  description
 }: PropsOneCategoryIcon) => (
   <div>
-    <Link to={pathname}>
+    <Link to={pathname} >
       <img src={img} />
       <span>{description}</span>
     </Link>

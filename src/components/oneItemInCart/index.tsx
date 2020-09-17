@@ -18,6 +18,9 @@ const OneItemInCart = (itemCart: CartItemProps) => {
       <span>{stateItem.description}</span>
       <span>{stateItem.price.toString()}</span>
       <span>количество: {itemCart.count.toString()}</span>
+      <button>+</button>
+      <button>-</button>
+      <button>убрать из корзины</button>
     </div>
   );
 };

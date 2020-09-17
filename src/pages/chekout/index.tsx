@@ -1,9 +1,8 @@
 import React from "react";
-import LayoutPage from "components/layoutPage";
 
 const Chekout = () => (
-  <LayoutPage>
+  <div>
     <p>Оформление заявки</p>
-  </LayoutPage>
+  </div>
 );
 export default Chekout;

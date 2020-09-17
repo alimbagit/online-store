@@ -1,6 +1,6 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "./types";
+import { ADD_TO_CART, REMOVE_FROM_CART, CHANGE_ITEM_COUNT } from "./types";
 
-export interface OneCartItem{
+export interface OneCartItem {
   id: string;
   price: number;
 }
@@ -16,6 +16,13 @@ export function removeFromCart(id: string) {
   return {
     type: REMOVE_FROM_CART,
     payload: id,
+  };
+}
+
+export function changeItemCount(id: string, changeCount: number) {
+  return {
+    type: CHANGE_ITEM_COUNT,
+    payload: { id, changeCount },
   };
 }
 

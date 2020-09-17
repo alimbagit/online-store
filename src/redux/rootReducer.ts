@@ -41,7 +41,6 @@ export const rootReducer = (
         state.totalPrice -= state.items[indexRemove].price;
         state.items.splice(indexRemove, 1);
       }
-
       return state;
 
     default:

@@ -26,45 +26,51 @@ export interface Category extends Base {
  * @see https://github.com/alimbagit/online-store
  */
 /**
- * Сортировка по алфавиту
- */
-const SortByAlphabet = (items: ItemInterface[]): ItemInterface[] => {
-  for (let i = 0; i < items.length; i++) {
-    for (let j = i; j < items.length; j++) {
-      if (items[i].description > items[j].description) {
-        let temp = items[i];
-        items[i] = items[j];
-        items[j] = temp;
-      }
-    }
-  }
-  return items;
-}
+
 /**
  * @param path Путь к подкаталогу
  * @param numberOfItems Количество выводимых элементов на одной странице
  * @param numberPage Номер страницы
  * @returns Возвращает категорию с заданным списком эелементов
  */
-export const GetCategory = (path: string, numberOfItems: number, numberPage: number): Category => {
+export const GetCategory = (
+  path: string,
+  numberOfItems: number,
+  numberPage: number
+): Category => {
   let names = path.split("/");
   names = names.splice(2, names.length - 2);
-  let result = FindCategory(names, data);
-  if (!result) {
-    result = data;
+  let tmpCategory = FindCategory(names, data);
+  if (!tmpCategory) {
+    tmpCategory = data;
   }
-  result.items = SortByAlphabet(result.items);
-  result.items = result.items.splice((numberPage - 1) * numberOfItems, numberOfItems)
-  return result;
+  //Сортировка по алфавиту
+  tmpCategory.items.sort((item1, item2) =>
+    item1.description > item2.description ? 1 : -1
+  );
+  let returnCategory = { ...tmpCategory };
+  returnCategory.items = tmpCategory.items.slice(
+    (numberPage - 1) * numberOfItems,
+    numberOfItems*numberPage
+  );
+  
+  console.log(
+    "tmpCategory: ",
+    tmpCategory,
+    "returnCategory: ",
+    returnCategory,
+    "numberPage : ",
+    numberPage
+  );
+  return returnCategory;
 };
 
 export const GetCountItemsInCategory = (path: string): number => {
   let names = path.split("/");
   names = names.splice(2, names.length - 2);
-  let result = FindCategory(names, data);
+  var result = FindCategory(names, data);
   return result ? result.items.length : data.items.length;
-}
-
+};
 
 //Задаем в функцию массив имен категорий где нулевой элемент это самая высшая категория в иерархии, а последний это искомая нами категория
 const FindCategory = (
@@ -72,43 +78,44 @@ const FindCategory = (
   category: Category
 ): Category | false => {
   //Проходимся по подкатегориям
-  let index = category.categories.findIndex( //Находим нужную нам подкатегорию по имени
+  let index = category.categories.findIndex(
+    //Находим нужную нам подкатегорию по имени
     (element) => element.name === names[0]
   );
   if (index != -1) {
     if (names.length <= 1) {
       //Если наш масив имен категорий заканчивается и равна 1 это говорит о том, что мы нашли конечную подкатегорию
-      return category.categories[index];
+      const result = category.categories[index];
+      return result;
     }
     return FindCategory(
       names.splice(1, names.length - 1),
       category.categories[index]
     ); //вырезая каждый раз первый элемент в массиве категорий мы приближаемся к искомой категории
-  }
-  else return false;
-
+  } else return false;
 };
 
 export const GetItemFromId = (id: string): ItemInterface | false => {
   let item = FindItemFromId(id, data);
   if (item) return item;
   return false;
-}
+};
 
-
-const FindItemFromId = (id: string, category: Category): ItemInterface | false => {
-  let index = category.items.findIndex(element => element.id === id);
+const FindItemFromId = (
+  id: string,
+  category: Category
+): ItemInterface | false => {
+  let index = category.items.findIndex((element) => element.id === id);
   if (index != -1) {
     return category.items[index];
-  }
-  else {
+  } else {
     for (let i = 0; i < category.categories.length; i++) {
       let item = FindItemFromId(id, category.categories[i]);
       if (item) return item;
     }
     return false;
   }
-}
+};
 
 export const data: Category = {
   img: "",
