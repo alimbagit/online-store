@@ -28,4 +28,5 @@ export function changeItemCount(id: string, changeCount: number) {
 
 export type CartActions =
   | ReturnType<typeof addToCart>
-  | ReturnType<typeof removeFromCart>;
+  | ReturnType<typeof removeFromCart>
+  | ReturnType<typeof changeItemCount>;

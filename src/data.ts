@@ -53,15 +53,6 @@ export const GetCategory = (
     (numberPage - 1) * numberOfItems,
     numberOfItems*numberPage
   );
-  
-  console.log(
-    "tmpCategory: ",
-    tmpCategory,
-    "returnCategory: ",
-    returnCategory,
-    "numberPage : ",
-    numberPage
-  );
   return returnCategory;
 };
 

@@ -1,10 +1,17 @@
 import { GetItemFromId, initializeItem } from "data";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeItemCount, removeFromCart } from "redux/actions";
 import { CartItemProps } from "redux/rootReducer";
 
-const OneItemInCart = (itemCart: CartItemProps) => {
+interface PropsOneItemInCart {
+  itemCart: CartItemProps;
+}
 
+const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
   const [stateItem, setStateItem] = useState(initializeItem);
+  const [countItem, setCountItem] = useState(itemCart.count);
+  const dispatch = useDispatch();
   useEffect(() => {
     LoadItem();
   });
@@ -12,15 +19,43 @@ const OneItemInCart = (itemCart: CartItemProps) => {
     let item = GetItemFromId(itemCart.id);
     if (item) setStateItem(item);
   };
+
+  const ChangeCountItem = (event: any) => {
+    if (event.target.value > 0) {
+      ChangeCountById(event.target.value);
+    }
+  };
+
+  const ClickButtonChanges = (changeToOneValue: number) => {
+    ChangeCountById(changeToOneValue+itemCart.count);
+  };
+
+  const ChangeCountById = (changeValue:number) => {
+    setCountItem(changeValue);
+    dispatch(changeItemCount(itemCart.id, changeValue));
+  };
+
+  const RemoveItemById = () => {
+    dispatch(removeFromCart(itemCart.id));
+    LoadItem();
+  };
   return (
     <div>
       <img src={stateItem.img} />
       <span>{stateItem.description}</span>
       <span>{stateItem.price.toString()}</span>
-      <span>количество: {itemCart.count.toString()}</span>
-      <button>+</button>
-      <button>-</button>
-      <button>убрать из корзины</button>
+      <span>
+        количество:{" "}
+        <input
+          type="text"
+          size={5}
+          value={countItem}
+          onChange={ChangeCountItem}
+        />{" "}
+      </span>
+      <button onClick={() => ClickButtonChanges(1)}>+</button>
+      <button onClick={() => ClickButtonChanges(1)}>-</button>
+      <button onClick={RemoveItemById}>убрать из корзины</button>
     </div>
   );
 };
