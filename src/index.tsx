@@ -4,12 +4,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Catalog from "./pages/catalog";
 import Cart from "./pages/cart";
 import Chekout from "./pages/chekout";
-import { createStore } from "redux";
+import { createStore, compose } from "redux";
 import { Provider } from "react-redux";
 import { rootReducer } from "./redux/rootReducer";
 import LayoutPage from "components/layoutPage";
+import { devToolsEnhancer } from 'redux-devtools-extension';
 
-const store = createStore(rootReducer);
+
+const store = createStore(rootReducer, devToolsEnhancer({}));
 
 const Index = () => (
   <Provider store={store}>

@@ -21,9 +21,7 @@ const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
   };
 
   const ChangeCountItem = (event: any) => {
-    if (event.target.value > 0) {
-      ChangeCountById(event.target.value);
-    }
+      ChangeCountById(parseInt(event.target.value));
   };
 
   const ClickButtonChanges = (changeToOneValue: number) => {
@@ -35,10 +33,10 @@ const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
     dispatch(changeItemCount(itemCart.id, changeValue));
   };
 
-  const RemoveItemById = () => {
-    dispatch(removeFromCart(itemCart.id));
-    LoadItem();
+  const RemoveItemById = (id:string) => {
+    dispatch(removeFromCart(id));
   };
+
   return (
     <div>
       <img src={stateItem.img} />
@@ -54,8 +52,8 @@ const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
         />{" "}
       </span>
       <button onClick={() => ClickButtonChanges(1)}>+</button>
-      <button onClick={() => ClickButtonChanges(1)}>-</button>
-      <button onClick={RemoveItemById}>убрать из корзины</button>
+      <button onClick={() => ClickButtonChanges(-1)}>-</button>
+      <button onClick={()=>RemoveItemById(itemCart.id)}>убрать из корзины</button>
     </div>
   );
 };
