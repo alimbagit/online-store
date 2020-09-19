@@ -21,7 +21,6 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@types/webpack": "^4.41.22",
     "@babel/core": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
@@ -29,6 +28,7 @@
     "@types/react": "16.8.24",
     "@types/react-dom": "16.0.5",
     "@types/react-router-dom": "4.2.6",
+    "@types/webpack": "^4.41.22",
     "@types/webpack-env": "^1.15.1",
     "babel-loader": "8.1.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -44,6 +44,7 @@
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "prettier": "^2.1.1",
+    "redux-devtools": "^3.7.0",
     "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
     "sugarss": "^2.0.0",
@@ -54,6 +55,7 @@
     "typescript": "^4.0.2",
     "webpack": "^4.44.1",
     "webpack-cli": "3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "redux-devtools-extension": "2.13.8"
   }
 }
