@@ -47,7 +47,7 @@ const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
         <input
           type="text"
           size={5}
-          value={itemCart.count}
+          value={countItem}
           onChange={ChangeCountItem}
         />{" "}
       </span>
