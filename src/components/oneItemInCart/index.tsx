@@ -10,7 +10,7 @@ interface PropsOneItemInCart {
 
 const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
   const [stateItem, setStateItem] = useState(initializeItem);
-  const [countItem, setCountItem] = useState(itemCart.count);
+
   const dispatch = useDispatch();
   useEffect(() => {
     LoadItem();
@@ -20,20 +20,19 @@ const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
     if (item) setStateItem(item);
   };
 
-  const ChangeCountItem = (event: any) => {
-      ChangeCountById(parseInt(event.target.value));
+  const ChangeCountItem = (event: React.FormEvent<HTMLInputElement>) => {
+    ChangeCountById(parseInt(event.currentTarget.value));
   };
 
   const ClickButtonChanges = (changeToOneValue: number) => {
-    ChangeCountById(changeToOneValue+itemCart.count);
+    ChangeCountById(changeToOneValue + itemCart.count);
   };
 
-  const ChangeCountById = (changeValue:number) => {
-    setCountItem(changeValue);
+  const ChangeCountById = (changeValue: number) => {
     dispatch(changeItemCount(itemCart.id, changeValue));
   };
 
-  const RemoveItemById = (id:string) => {
+  const RemoveItemById = (id: string) => {
     dispatch(removeFromCart(id));
   };
 
@@ -45,15 +44,16 @@ const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
       <span>
         количество:{" "}
         <input
-          type="text"
+          type="number"
           size={5}
-          value={countItem}
+          value={itemCart.count}
           onChange={ChangeCountItem}
+          min="0" max="100"
         />{" "}
       </span>
       <button onClick={() => ClickButtonChanges(1)}>+</button>
       <button onClick={() => ClickButtonChanges(-1)}>-</button>
-      <button onClick={()=>RemoveItemById(itemCart.id)}>убрать из корзины</button>
+      <button onClick={() => RemoveItemById(itemCart.id)}>убрать из корзины</button>
     </div>
   );
 };

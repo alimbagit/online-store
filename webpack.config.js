@@ -16,7 +16,7 @@ module.exports = {
     publicPath: "/",
   },
   resolve: {
-    extensions: [".webpack.js", ".web.js", ".js", ".ts", ".tsx"],
+    extensions: [".webpack.js", ".web.js", ".js", ".ts", ".tsx", ".scss"],
     modules: ["node_modules", path.resolve(__dirname, "src")],
   },
   module: {
@@ -42,7 +42,13 @@ module.exports = {
       },
       {
         test: /\.(sass|scss)$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings
+        }, {
+          loader: "css-loader" // translates CSS into CommonJS
+        }, {
+          loader: "sass-loader" // compiles Sass to CSS
+        }]
       },
     ],
   },

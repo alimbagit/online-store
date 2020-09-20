@@ -1,4 +1,5 @@
 import { GetItemFromId, initializeItem } from "data";
+import "./styles.scss"
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeItemCount, removeFromCart } from "redux/actions";

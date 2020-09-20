@@ -9,8 +9,7 @@ const CartInHeader = () => {
 
     return (
         <div>
-
-            <Link to="/cart">Корзина {totalCount.toString()} {totalPrice.toString()}р</Link>
+            <Link to="/cart">Корзина. Количество: {totalCount.toString()} {totalPrice.toString()}р</Link>
         </div>
     )
 }
