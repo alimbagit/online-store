@@ -25,7 +25,6 @@ export interface Category extends Base {
  * Основная страница каталога.
  * @see https://github.com/alimbagit/online-store
  */
-/**
 
 /**
  * @param path Путь к подкаталогу
@@ -51,7 +50,7 @@ export const GetCategory = (
   let returnCategory = { ...tmpCategory };
   returnCategory.items = tmpCategory.items.slice(
     (numberPage - 1) * numberOfItems,
-    numberOfItems*numberPage
+    numberOfItems * numberPage
   );
   return returnCategory;
 };

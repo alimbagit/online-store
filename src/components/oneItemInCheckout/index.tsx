@@ -1,8 +1,5 @@
 import { GetItemFromId, initializeItem } from "data";
-import "./styles.scss"
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { changeItemCount, removeFromCart } from "redux/actions";
 import { CartItemProps } from "redux/rootReducer";
 
 interface PropsOneItemInCheckout {
@@ -13,7 +10,6 @@ const OneItemInCheckout = ({ itemCheckout }: PropsOneItemInCheckout) => {
 
     const [stateItem, setStateItem] = useState(initializeItem);
 
-    const dispatch = useDispatch();
     useEffect(() => {
         LoadItem();
     });
