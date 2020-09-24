@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { CartState } from "redux/rootReducer";
 import OneItemInCheckout from "components/oneItemInCheckout";
 import CheckoutForm from "components/checkoutForm";
+import ModalWindow from "components/modalWindow";
+import { RouteComponentProps } from "react-router-dom";
+
 /**
  * Страница оформления заказа
  */
 
-const Checkout = () => {
+const Checkout = ({history}:RouteComponentProps) => {
+  const [isVisibleModalWindow, setIsVisibleModalWindow] = useState(false);
+  const [textInWidow, setTextInWindow]=useState(new Array<string>(0));
   const checkoutItems = useSelector((state: CartState) => state.items);
   const totalItems = useSelector((state: CartState) => state.totalItems);
   const totalPriceItems = useSelector((state: CartState) => state.totalPrice);
 
-  const CallbackFormValues=(checkoutInfo:string[])=>{
-    
+  const CallbackFormValues = (checkoutInfo: string[]) => {
+    setTextInWindow([totalItems.toString(),totalPriceItems.toString(), ...checkoutInfo]);
+    setIsVisibleModalWindow(true);
+  }
+
+  const CloseModalWindow=()=>{
+    history.push("/catalog");
   }
 
   return (
@@ -29,8 +39,10 @@ const Checkout = () => {
         <div>Общая стоимость товаров: {totalPriceItems}</div>
       </div>
       <div>
-        <CheckoutForm callbackFormValues={CallbackFormValues}/>
+        <CheckoutForm callbackFormValues={CallbackFormValues} />
       </div>
+      {/** Модальное окно */}
+      <ModalWindow shown={isVisibleModalWindow} textInWindow={textInWidow} closeWindow={CloseModalWindow}/>
     </div>
   );
 };

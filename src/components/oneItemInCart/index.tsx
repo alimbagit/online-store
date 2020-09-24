@@ -1,4 +1,4 @@
-import { GetItemFromId, initializeItem } from "data";
+import { GetItemById, initializeItem } from "data";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeItemCount, removeFromCart } from "redux/actions";
@@ -16,7 +16,7 @@ const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
     LoadItem();
   });
   const LoadItem = () => {
-    let item = GetItemFromId(itemCart.id);
+    let item = GetItemById(itemCart.id);
     if (item) setStateItem(item);
   };
 

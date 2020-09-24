@@ -85,13 +85,13 @@ const FindCategory = (
   } else return false;
 };
 
-export const GetItemFromId = (id: string): ItemInterface | false => {
-  let item = FindItemFromId(id, data);
+export const GetItemById = (id: string): ItemInterface | false => {
+  let item = FindItemById(id, data);
   if (item) return item;
   return false;
 };
 
-const FindItemFromId = (
+const FindItemById = (
   id: string,
   category: Category
 ): ItemInterface | false => {
@@ -100,7 +100,7 @@ const FindItemFromId = (
     return category.items[index];
   } else {
     for (let i = 0; i < category.categories.length; i++) {
-      let item = FindItemFromId(id, category.categories[i]);
+      let item = FindItemById(id, category.categories[i]);
       if (item) return item;
     }
     return false;

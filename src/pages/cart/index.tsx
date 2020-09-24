@@ -4,14 +4,16 @@ import OneItemInCart from "components/oneItemInCart";
 import { CartState } from "redux/rootReducer";
 import { RouteComponentProps } from "react-router-dom";
 
-const Cart = ({history}:RouteComponentProps) => {
-
+const Cart = ({ history }: RouteComponentProps) => {
+  /** Берем массив текущих товаров в корзине */
   const stateCartItems = useSelector((state: CartState) => state.items);
-  const statePriceItems = useSelector((state: CartState)=>state.totalPrice);
-  const GoToCheckoutPage=()=>{
-    history.push("/checkout");
+  const statePriceItems = useSelector((state: CartState) => state.totalPrice);
+  /**Обработчик нажатия на кнопку "Оформить заказ" */
+  const GoToCheckoutPage = () => {
+    stateCartItems.length === 0
+      ? alert("Добавьте хотя бы 1 товар в корзину")
+      : history.push("/checkout");
   }
-  
 
   return (
     <div>

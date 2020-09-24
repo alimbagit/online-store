@@ -1,4 +1,4 @@
-import { GetItemFromId, initializeItem } from "data";
+import { GetItemById, initializeItem } from "data";
 import React, { useEffect, useState } from "react";
 import { CartItemProps } from "redux/rootReducer";
 
@@ -14,7 +14,7 @@ const OneItemInCheckout = ({ itemCheckout }: PropsOneItemInCheckout) => {
         LoadItem();
     });
     const LoadItem = () => {
-        let item = GetItemFromId(itemCheckout.id);
+        let item = GetItemById(itemCheckout.id);
         if (item) setStateItem(item);
     };
 
