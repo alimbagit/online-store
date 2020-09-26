@@ -1,0 +1,15 @@
+@import "theme.scss";
+
+button {
+    border: 1px solid $second-color;
+    background-color: transparent;
+    &:hover {
+        background-color: $primary-color;
+    }
+
+}
+
+body{
+    font-family: $primary-font-family;
+    color: $text-primary-color;
+}

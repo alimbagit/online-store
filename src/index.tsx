@@ -10,6 +10,8 @@ import { rootReducer } from "./redux/rootReducer";
 import LayoutPage from "components/layoutPage";
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
+import "styles/main.scss";
+
 
 const store = createStore(rootReducer, devToolsEnhancer({}));
 
