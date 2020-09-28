@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./oneCategoryIcon.scss";
 
 interface PropsOneCategoryIcon {
   description: string;
@@ -11,12 +12,12 @@ const OneCategoryIcon = ({
   pathname,
   description
 }: PropsOneCategoryIcon) => (
-  <div>
-    <Link to={pathname} >
-      <img src={img} />
-      <span>{description}</span>
+    <Link to={pathname} className="one-category">
+      <div className="category-image-wrapper">
+        <img src={img} />
+      </div>
+      <span className="description-category">{description}</span>
     </Link>
-  </div>
-);
+  );
 
 export default OneCategoryIcon;

@@ -3,7 +3,7 @@ import { Link, RouteComponentProps } from "react-router-dom";
 import { GetCategory, data, GetCountItemsInCategory } from "data";
 import OneCategoryIcon from "components/oneCategoryIcon";
 import OneItemIcon from "components/oneItemIcon";
-import "./style.scss";
+import "./catalog.scss";
 
 /**
  * Основная страница каталога.
@@ -63,9 +63,9 @@ const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
   return (
     <div>
       <h2>{currentCategory.description}</h2>
-      <div className="categories">
-        {/* блок отображения категорий */}
-        {currentCategory.categories.length > 0 && <h3>Каталоги</h3>}
+      {/* блок отображения категорий */}
+      {currentCategory.categories.length > 0 && <h3>Подкаталоги</h3>}
+      <div className="catalog-list">
         {currentCategory.categories.map((category) => (
           <OneCategoryIcon
             key={category.name}

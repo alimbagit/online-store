@@ -1,15 +1,32 @@
 @import "theme.scss";
 
-button {
-    border: 1px solid $second-color;
-    background-color: transparent;
-    &:hover {
-        background-color: $primary-color;
-    }
-
-}
-
-body{
+body {
     font-family: $primary-font-family;
     color: $text-primary-color;
+    background-color: $second-color;
+    margin: 0;
+}
+
+h2 {
+    color: $text-primary-color;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: $text-primary-color;
+}
+
+.main-wrapper {
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    width: $width-main;
+}
+
+input{
+    height: 20px;
+    padding: 1px 1px 1px 5px;
+    // box-shadow: 0.6px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    border: 0.5px solid #adadad;
+    margin: 5px;
 }

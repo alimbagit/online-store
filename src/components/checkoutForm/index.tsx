@@ -92,6 +92,7 @@ const CheckoutForm = ({ callbackFormValues }: PropsCheckoutForm) => {
           name={inputsList.Phone}
           type="tel"
           inputMode="tel"
+          placeholder="***-***-**-**"
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
           required
           size={15}

@@ -1,5 +1,5 @@
 import React from 'react';
-import "./style.scss"
+import "./modalWindow.scss"
 
 interface PropsModalWIndow {
     shown: boolean;

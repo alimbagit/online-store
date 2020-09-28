@@ -1,0 +1,33 @@
+@import "styles/theme.scss";
+
+.cart-wrapper{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.cart-items-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 730px;
+}
+
+.to-checkout{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    button{
+        @include button-primary;
+        background-image: linear-gradient(to bottom,$primary-color, #e24800);
+        color: white;
+        width: 150px;
+    }
+
+    span{
+        font-weight: bold;
+        margin-bottom: 15px;;
+    }
+}

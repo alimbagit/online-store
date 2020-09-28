@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CartInHeader from "./cartInHeader";
+import "./header.scss"
 
 const Header = () => (
-  <div>
-    <Link to="/catalog">Главная</Link>
-    <CartInHeader />
-  </div>
+  <header>
+    <div className="header-wrapper">
+      <Link className="button-to-main" to="/catalog">Главная</Link>
+      <CartInHeader />
+    </div>
+  </header>
 );
 export default Header;
