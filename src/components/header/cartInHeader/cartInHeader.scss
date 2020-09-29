@@ -12,26 +12,32 @@
 
         span {
             align-self: center;
+            width: 100px;
         }
     }
 
     .icon-wrapper {
         display: flex;
+        width: 50px;
 
         img {
-            height: 25px;
+            height: 30px;
             filter: invert(100%);
         }
         .total-count {
             background-color: white;
             z-index: 10;
-            width: 22px;
-            height: 22px;
+            width: 15px;
+            height: 15px;
             border-radius: 13px;
             text-align: center;
             color:$text-primary-color;
             font-weight: bold;
-            align-self: center;
+            font-size: 12px;
+            padding: 3px 2px 0 2px;
+            position: relative;
+            left: -14px;
+            bottom: 2px;
         }
     }
 }

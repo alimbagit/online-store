@@ -15,7 +15,13 @@ $width-total-price: 200px;
 
     button {
         @include button-primary;
+        
+        &.delete-item{
+            width: 175px;
+        }
     }
+
+    
 
     .price {
         font-weight: bold;
@@ -23,12 +29,14 @@ $width-total-price: 200px;
         margin-top: 53px;
     }
 
-    .middle-item-cart, .end-item-cart {
+    .middle-item-cart,
+    .right-item-cart {
         display: flex;
         flex-direction: column;
-        justify-content: space-between  ;
+        justify-content: space-between;
         align-content: center;
         height: 100%;
+        width: 200px;
 
         .item-description {
             text-align: left;
@@ -36,12 +44,27 @@ $width-total-price: 200px;
             margin-top: 55px;
         }
 
-        .counter{
+        .counter {
             align-self: flex-end;
+            // display: flex;
+            input {
+                // width: 30px;
+                // border-radius: 5px;
+                padding: 8px 14px;
+                border: none;
+                height: auto;
+                width: 16px;
+                margin: 0px;
+                text-align: center;
+
+                &:focus{
+                    outline: none;
+                }
+            }
         }
     }
 
-    .middle-item-cart{
+    .middle-item-cart {
         flex-grow: 1;
         margin: 0 10px;
     }

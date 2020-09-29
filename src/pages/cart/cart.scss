@@ -20,10 +20,8 @@
     flex-direction: column;
     width: 250px;
     button{
-        @include button-primary;
-        background-image: linear-gradient(to bottom,$primary-color, #e24800);
-        color: white;
-        width: 150px;
+        @include button-primary-light;
+        width: 160px;
     }
 
     span{

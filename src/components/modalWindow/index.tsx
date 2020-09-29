@@ -7,13 +7,19 @@ interface PropsModalWIndow {
     closeWindow:()=>void;
 }
 
+/**
+ * Модальное окно
+ * 
+ * @param shown - Флаг отображения модального окна
+ * @param textInWindow - Текст, который будет отоброжаться в модальном окне
+ * @param closeWindow - callback функция, которая будет запускаться при событии закрытия модального окна
+ */
 const ModalWindow = ({ shown, textInWindow, closeWindow }: PropsModalWIndow) => {
     if (shown)
         return (
             <div id="myModal" className="modal">
                 <div className="modal-content">
-                    {/* <span className="close">&times;</span> */}
-                    <p>Some text in the Modal..</p>
+                    <h4>Ваш заказ принят. Мы перенаправим вас на главную страницу каталога.</h4>
                     <div>{textInWindow.map((str, index) => {
                         return (
                             <p key={index}>{str}</p>

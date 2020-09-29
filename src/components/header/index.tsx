@@ -6,7 +6,7 @@ import "./header.scss"
 const Header = () => (
   <header>
     <div className="header-wrapper">
-      <Link className="button-to-main" to="/catalog">Главная</Link>
+      <Link className="button-to-main" to="/catalog">Каталог</Link>
       <CartInHeader />
     </div>
   </header>
