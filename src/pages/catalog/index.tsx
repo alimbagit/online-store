@@ -1,36 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { Link, RouteComponentProps } from "react-router-dom";
-import { GetCategory, data, GetCountItemsInCategory } from "data";
+import { RouteComponentProps } from "react-router-dom";
+import { useParams } from "react-router";
+import { GetCategory, data, GetCountItemsInCategory, Category } from "data";
 import OneCategoryIcon from "components/oneCategoryIcon";
 import OneItemIcon from "components/oneItemIcon";
+import NavigateInItems from "components/navigateInItems";
 import "./catalog.scss";
 
 /**
  * Основная страница каталога.
  * @see https://github.com/alimbagit/online-store
  */
-
-const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
+interface Params{
+  category:string;
+}
+const Catalog: React.FC<RouteComponentProps> = ({ location }) => {
   const numberOfItemsInPage = 12;
-  const [currentCategory, setCurrentCategory] = useState(data);
-  const [currentPageItems, setCurrentPageItems] = useState(1);
+  const [currentCategory, setCurrentCategory] = useState<Category>();
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [totalPageItems, setTotalPageItems] = useState(1);
-
-  useEffect(() => {
-    LoadData();
-    LoadCountItemsInCategory();
-    SetCurrentPage(1);
-  }, [location]);
-
+  const {category} = useParams<Params>();
+  
   //Загрузка категории, товары которой будет отображаться на текущей странице каталога
   const LoadData = () => {
     const tmpCategory = GetCategory(
       location.pathname,
       numberOfItemsInPage,
-      currentPageItems
+      currentPageNumber
     );
     setCurrentCategory(tmpCategory);
   };
+
+  useEffect(() => {
+    // setCurrentPageNumber(1);
+    LoadData();
+    LoadCountItemsInCategory();
+  }, [category, currentPageNumber]);
 
   //Загрузка общего количества товаров в текущей категории
   const LoadCountItemsInCategory = () => {
@@ -39,34 +44,26 @@ const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
     tmpCountItems % numberOfItemsInPage > 0 && tmpPageItems++;
     setTotalPageItems(tmpPageItems);
   };
-
+  console.log(currentPageNumber);
   const SetCurrentPage = (pageNumber: number) => {
-    setCurrentPageItems(pageNumber);
+    console.log("pageNumber=" + pageNumber);
+    if (pageNumber != currentPageNumber) {
+      // console.log(currentPageItems);
+      setCurrentPageNumber(pageNumber);
+      // console.log(currentPageItems);
+      // LoadData();
+    }
   };
-
-  const NavigateInItems = () => (
-    <div>
-      {new Array(totalPageItems).fill(1).map((value, index) => {
-        return (
-          <Link
-            key={index}
-            to={location.pathname}
-            onClick={() => SetCurrentPage(index + 1)}
-          >
-            страница {index + 1}
-          </Link>
-        );
-      })}
-    </div>
-  );
 
   return (
     <div>
-      <h2>{currentCategory.description}</h2>
+      <h2>{currentCategory?.description}</h2>
       {/* блок отображения категорий */}
-      {currentCategory.categories.length > 0 && <h3>Подкаталоги</h3>}
+      {currentCategory && currentCategory.categories.length > 0 && (
+        <h3>Подкаталоги</h3>
+      )}
       <div className="catalog-list">
-        {currentCategory.categories.map((category) => (
+        {currentCategory?.categories.map((category) => (
           <OneCategoryIcon
             key={category.name}
             pathname={
@@ -80,14 +77,22 @@ const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
         ))}
       </div>
       {/* блок отображения товаров */}
-      {currentCategory.items.length > 0 && <h3>Товары</h3>}
-      <NavigateInItems />
+      {currentCategory && currentCategory.items.length > 0 && <h3>Товары</h3>}
+      <NavigateInItems
+        totalPageItems={totalPageItems}
+        SetCurrentPage={SetCurrentPage}
+        currentPage={currentPageNumber}
+      />
       <div className="catalog-items-list">
-        {currentCategory.items.map((item) => (
+        {currentCategory?.items.map((item) => (
           <OneItemIcon key={item.id} {...item} />
         ))}
       </div>
-      <NavigateInItems />
+      <NavigateInItems
+        totalPageItems={totalPageItems}
+        SetCurrentPage={SetCurrentPage}
+        currentPage={currentPageNumber}
+      />
     </div>
   );
 };

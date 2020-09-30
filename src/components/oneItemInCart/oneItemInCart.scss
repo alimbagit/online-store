@@ -46,16 +46,15 @@ $width-total-price: 200px;
 
         .counter {
             align-self: flex-end;
-            // display: flex;
+
             input {
-                // width: 30px;
-                // border-radius: 5px;
-                padding: 8px 14px;
+                padding: 8px 10px;
                 border: none;
                 height: auto;
-                width: 16px;
+                width: 20px;
                 margin: 0px;
                 text-align: center;
+                font-size: 16px;
 
                 &:focus{
                     outline: none;

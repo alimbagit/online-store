@@ -1,0 +1,30 @@
+@import "styles/theme.scss";
+
+.navigate-wrapper {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 40px;
+    background-color: white;
+    height: 55px;
+    @include border-card;
+    margin: 0px 15px;
+    margin-bottom: 20px;
+
+    div {        
+        text-decoration: none;
+        text-align: center;
+        color: $text-primary-color;
+        width: 50px;
+
+        &:hover {
+            background-color: rgb(255, 237, 230);
+            color: $primary-color;
+            cursor: pointer;
+        }
+    }
+
+    .current-page {
+        border-bottom: 5px solid $primary-color;
+    }
+}

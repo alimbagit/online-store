@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import Catalog from "./pages/catalog";
 import Cart from "./pages/cart";
 import Checkout from "./pages/checkout";
@@ -20,8 +20,9 @@ const Index = () => (
     <Router>
       <LayoutPage>
         <div className="main-wrapper">
-          <Route exact path="/" component={Catalog} />
-          <Route path="/catalog" component={Catalog} />
+          <Route exact path="/"><Redirect to="/catalog"/></Route>
+          <Route exact path="/catalog" component={Catalog} />
+          <Route path="/catalog/:category" component={Catalog} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/checkout" component={Checkout} />
         </div>
