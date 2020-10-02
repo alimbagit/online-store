@@ -23,7 +23,7 @@ const OneItemInCheckout = ({ itemCheckout }: PropsOneItemInCheckout) => {
             <span>{stateItem.description}</span>
             <span>{stateItem.price.toString()}</span>
             <span>
-                количество:{" "+itemCheckout.count.toString()}
+                :{" "+itemCheckout.count.toString()} шт
             </span>
         </div>
     );

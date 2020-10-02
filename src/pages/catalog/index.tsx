@@ -1,32 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Link, RouteComponentProps } from "react-router-dom";
-import { GetCategory, data, GetCountItemsInCategory } from "data";
+import { RouteComponentProps } from "react-router-dom";
+import { useParams, Route } from "react-router";
+import { GetCategory, GetCountItemsInCategory, Category } from "data";
 import OneCategoryIcon from "components/oneCategoryIcon";
 import OneItemIcon from "components/oneItemIcon";
+import NavigateInItems from "components/navigateInItems";
+import "./catalog.scss";
+import Breadcrumbs from "components/breadcrumbs";
 
 /**
  * Основная страница каталога.
  * @see https://github.com/alimbagit/online-store
  */
-
+interface Params {
+  category: string;
+}
 const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
   const numberOfItemsInPage = 12;
-  const [currentCategory, setCurrentCategory] = useState(data);
-  const [currentPageItems, setCurrentPageItems] = useState(1);
+  const [currentCategory, setCurrentCategory] = useState<Category>();
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [totalPageItems, setTotalPageItems] = useState(1);
-
-  useEffect(() => {
-    LoadData();
-    LoadCountItemsInCategory();
-    SetCurrentPage(1);
-  }, [location]);
+  const { category } = useParams<Params>();
 
   //Загрузка категории, товары которой будет отображаться на текущей странице каталога
   const LoadData = () => {
     const tmpCategory = GetCategory(
       location.pathname,
       numberOfItemsInPage,
-      currentPageItems
+      currentPageNumber
     );
     setCurrentCategory(tmpCategory);
   };
@@ -40,32 +41,30 @@ const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
   };
 
   const SetCurrentPage = (pageNumber: number) => {
-    setCurrentPageItems(pageNumber);
+    if (pageNumber != currentPageNumber) {
+      setCurrentPageNumber(pageNumber);
+    }
   };
 
-  const NavigateInItems = () => (
-    <div>
-      {new Array(totalPageItems).fill(1).map((value, index) => {
-        return (
-          <Link
-            key={index}
-            to={location.pathname}
-            onClick={() => SetCurrentPage(index + 1)}
-          >
-            страница {index + 1}
-          </Link>
-        );
-      })}
-    </div>
-  );
+  useEffect(() => {
+    LoadData();
+    LoadCountItemsInCategory();
+  }, [category, currentPageNumber]);
+
+  if (match.url !== location.pathname) {
+    return <Route path={`${match.url}/:category`} component={Catalog} />;
+  }
 
   return (
     <div>
-      <h2>{currentCategory.description}</h2>
-      <div className="categories">
-        {/* блок отображения категорий */}
-        {currentCategory.categories.length > 0 && <h3>Каталоги</h3>}
-        {currentCategory.categories.map((category) => (
+      <Breadcrumbs pathname={location.pathname}/>
+      <h2>{currentCategory?.description}</h2>
+      {/* блок отображения категорий */}
+      {currentCategory && currentCategory.categories.length > 0 && (
+        <h4>Подкаталоги</h4>
+      )}
+      <div className="catalog-list">
+        {currentCategory?.categories.map((category) => (
           <OneCategoryIcon
             key={category.name}
             pathname={
@@ -79,14 +78,17 @@ const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
         ))}
       </div>
       {/* блок отображения товаров */}
-      {currentCategory.items.length > 0 && <h3>Товары</h3>}
-      <NavigateInItems />
-      <div className="items">
-        {currentCategory.items.map((item) => (
+      {currentCategory && currentCategory.items.length > 0 && <h4>Товары</h4>}
+      <div className="catalog-items-list">
+        {currentCategory?.items.map((item) => (
           <OneItemIcon key={item.id} {...item} />
         ))}
       </div>
-      <NavigateInItems />
+      <NavigateInItems
+        totalPageItems={totalPageItems}
+        SetCurrentPage={SetCurrentPage}
+        currentPage={currentPageNumber}
+      />
     </div>
   );
 };

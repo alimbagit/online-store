@@ -1,0 +1,36 @@
+@import "styles/theme.scss";
+
+.wrapper-checkout {
+    display: flex;
+    justify-content: space-between;
+    width: 750px;
+
+    .checkout-info {
+        display: flex;
+        flex-direction: column;
+
+        div {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .total-info {
+            font-size: 17px;
+        }
+
+        .checkout-items {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+
+input{
+    height: 25px;
+    padding: 1px 1px 1px 10px;
+    // box-shadow: 0.6px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #adadad;
+    margin: 5px;
+    border-radius: 3px;
+}

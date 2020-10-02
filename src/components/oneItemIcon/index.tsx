@@ -3,6 +3,7 @@ import { ItemInterface } from "data";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "redux/actions";
 import { CartState } from "redux/rootReducer";
+import "./oneItemIcon.scss";
 
 /**
  * @param item Представление одонго товара в каталоге
@@ -33,15 +34,17 @@ const OneItemIcon = (item: ItemInterface) => {
   });
 
   return (
-    <div>
-      <div>
+    <div className="one-item">
+      <div className="item-image-wrapper">
         <img src={item.img} />
-        <span>{item.description}</span>
-        <span>{item.price.toString()}</span>
       </div>
-      <button onClick={() => EventToCartListener()}>
-        {stateButton ? "УБРАТЬ ИЗ КОРЗИНЫ" : "В КОРЗИНУ"}
-      </button>
+      <span className="item-description">{item.description}</span>
+      <div className="item-footer">
+        <span className="price">{item.price.toString()}</span>
+        <button onClick={() => EventToCartListener()}>
+          {stateButton ? "УБРАТЬ ИЗ КОРЗИНЫ" : "В КОРЗИНУ"}
+        </button>
+      </div>
     </div>
   );
 };

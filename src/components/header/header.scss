@@ -1,0 +1,26 @@
+@import "styles/theme.scss";
+
+header{
+    background-color: $primary-color;
+    height: 45px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 2;
+    box-shadow: 0 1px 5px 4px rgba(#000000, 0.2);
+}
+
+.header-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: $width-main;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+.button-to-main{
+    text-decoration: none;
+    color: white;
+}

@@ -1,0 +1,14 @@
+@import "styles/theme.scss";
+
+.wrapper-breadcrambs {
+    margin: 0 0 10px 0px;
+
+    a {
+        text-decoration: none;
+        color: $text-secondary-color;
+        font-size: 12px;
+        &:hover {
+            color: $text-primary-color;
+        }
+    }
+}

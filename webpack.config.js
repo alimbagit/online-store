@@ -16,7 +16,7 @@ module.exports = {
     publicPath: "/",
   },
   resolve: {
-    extensions: [".webpack.js", ".web.js", ".js", ".ts", ".tsx", ".scss"],
+    extensions: [".webpack.js", ".web.js", ".js", ".ts", ".tsx", ".scss", ".png", ".jpg"],
     modules: ["node_modules", path.resolve(__dirname, "src")],
   },
   module: {
@@ -50,6 +50,18 @@ module.exports = {
           loader: "sass-loader" // compiles Sass to CSS
         }]
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+              esModule:false
+            }
+          },
+        ],
+      }
     ],
   },
   plugins: [

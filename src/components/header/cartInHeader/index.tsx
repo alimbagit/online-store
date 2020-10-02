@@ -2,15 +2,27 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CartState } from "redux/rootReducer";
+import "./cartInHeader.scss";
+// import frfrf from "./cart-icon.png";
 
 const CartInHeader = () => {
-    const totalCount = useSelector((state: CartState) => state.totalItems);
-    const totalPrice = useSelector((state: CartState) => state.totalPrice);
+  const totalCount = useSelector((state: CartState) => state.totalItems);
+  const totalPrice = useSelector((state: CartState) => state.totalPrice);
 
-    return (
-        <div>
-            <Link to="/cart">Корзина. Количество: {totalCount.toString()} {totalPrice.toString()}р</Link>
+  return (
+    <div className="cart-in-header">
+      <Link to="/cart">
+        <div className="icon-wrapper">
+          <img src={require("./cart-icon.png")} />
+          {totalCount > 0 && (
+            <div className="total-count">
+              <span> {totalCount.toString()}</span>
+            </div>
+          )}
         </div>
-    )
-}
+        <span>{totalPrice > 0 ? totalPrice.toString() + "Р" : "Корзина"}</span>
+      </Link>
+    </div>
+  );
+};
 export default CartInHeader;

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeItemCount, removeFromCart } from "redux/actions";
 import { CartItemProps } from "redux/rootReducer";
+import "./oneItemInCart.scss";
 
 interface PropsOneItemInCart {
   itemCart: CartItemProps;
@@ -21,7 +22,9 @@ const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
   };
 
   const ChangeCountItem = (event: React.FormEvent<HTMLInputElement>) => {
-    ChangeCountById(parseInt(event.currentTarget.value));
+    if (event.currentTarget.value != "") {
+      ChangeCountById(parseInt(event.currentTarget.value));
+    }
   };
 
   const ClickButtonChanges = (changeToOneValue: number) => {
@@ -37,23 +40,35 @@ const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
   };
 
   return (
-    <div>
-      <img src={stateItem.img} />
-      <span>{stateItem.description}</span>
-      <span>{stateItem.price.toString()}</span>
-      <span>
-        количество:{" "}
-        <input
-          type="number"
-          size={5}
-          value={itemCart.count}
-          onChange={ChangeCountItem}
-          min="0" max="100"
-        />{" "}
-      </span>
-      <button onClick={() => ClickButtonChanges(1)}>+</button>
-      <button onClick={() => ClickButtonChanges(-1)}>-</button>
-      <button onClick={() => RemoveItemById(itemCart.id)}>убрать из корзины</button>
+    <div className="one-item-cart">
+      <div className="item-image-wrapper">
+        <img src={stateItem.img} />
+      </div>
+      <div className="middle-item-cart">
+        <p className="item-description">{stateItem.description}</p>
+        <div className="counter">
+          <button onClick={() => ClickButtonChanges(1)}>+</button>
+          <input
+            type="text"
+            size={1}
+            value={itemCart.count}
+            onChange={ChangeCountItem}
+            min="0"
+            max="100"
+            readOnly
+          />
+          <button onClick={() => ClickButtonChanges(-1)}>-</button>
+        </div>
+      </div>
+      <div className="right-item-cart">
+        <span className="price">{stateItem.price.toString()}Р</span>
+        <button
+          className="delete-item"
+          onClick={() => RemoveItemById(itemCart.id)}
+        >
+          убрать из корзины
+        </button>
+      </div>
     </div>
   );
 };

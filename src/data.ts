@@ -55,6 +55,7 @@ export const GetCategory = (
   return returnCategory;
 };
 
+/**Возвращает количество страниц товаров заданной категории */
 export const GetCountItemsInCategory = (path: string): number => {
   let names = path.split("/");
   names = names.splice(2, names.length - 2);
@@ -62,7 +63,7 @@ export const GetCountItemsInCategory = (path: string): number => {
   return result ? result.items.length : data.items.length;
 };
 
-//Задаем в функцию массив имен категорий где нулевой элемент это самая высшая категория в иерархии, а последний это искомая нами категория
+/**Задаем в функцию массив имен категорий где нулевой элемент это самая высшая категория в иерархии, а последний это искомая нами категория*/
 const FindCategory = (
   names: string[],
   category: Category
@@ -105,6 +106,33 @@ const FindItemById = (
     }
     return false;
   }
+};
+
+
+/**Возвращает последовательность description по последовательности names */
+export const GetDescriptionsByPath = (path: string): string[] => {
+  let namesArray = path.split("/");
+  namesArray.splice(0, 2);
+  let descriptions: string[] = [];
+  let result = FindDescriptionsByPath(data, namesArray, descriptions);
+  if (result) return result;
+  return [];
+}
+
+const FindDescriptionsByPath = (
+  category: Category,
+  names: string[],
+  descriptions: string[]
+): string[] | false => {
+  if(names.length<=0) return descriptions;
+  let index = category.categories.findIndex((element) => element.name === names[0]);
+  if (index != -1) {
+    descriptions.push(category.categories[index].description);
+    names.splice(0, 1);
+    if (names.length >= 1) return FindDescriptionsByPath(category.categories[index], names, descriptions);
+    else return descriptions;
+  }
+  else return false;
 };
 
 export const data: Category = {

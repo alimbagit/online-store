@@ -1,0 +1,9 @@
+@import "styles/theme.scss";
+
+.catalog-items-list, .catalog-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: $width-main;
+}
