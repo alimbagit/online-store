@@ -20,7 +20,7 @@ const Index = () => (
     <Router>
       <LayoutPage>
         <div className="main-wrapper">
-          <Route exact path="/"><Redirect to="/catalog"/></Route>
+          <Redirect path="/" to="/catalog" />
           <Route exact path="/catalog" component={Catalog} />
           <Route path="/catalog/:category" component={Catalog} />
           <Route exact path="/cart" component={Cart} />

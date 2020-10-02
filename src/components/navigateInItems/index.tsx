@@ -7,6 +7,7 @@ interface PropsNavigateInItems {
   SetCurrentPage: (current: number) => void;
 }
 
+/**Панель навигации по страницам товарам одного подкаталога */
 const NavigateInItems = ({
   totalPageItems,
   SetCurrentPage,
