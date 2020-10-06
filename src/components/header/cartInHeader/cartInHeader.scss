@@ -1,43 +1,47 @@
 @import "styles/theme.scss";
 
 .cart-in-header {
+    @include media(width, 9%, 9%, 34%);
     a {
         display: flex;
         justify-content: flex-start;
         align-content: center;
         text-decoration: none;
         color: white;
-        width: 140px;
         height: 30px;
 
         span {
             align-self: center;
             width: 100px;
+            @include media(font-size, 14px, 14px, 40px);
         }
     }
 
     .icon-wrapper {
         display: flex;
-        width: 50px;
-
+        align-self: center;
+        @include media(width, 50px, 50px, 135px);
         img {
-            height: 30px;
+            @include media(height, 30px, 30px, 80px);
             filter: invert(100%);
         }
         .total-count {
             background-color: white;
             z-index: 10;
-            width: 15px;
-            height: 15px;
-            border-radius: 13px;
+            width: 40%;
+            height: 64%;
+            border-radius: 51%;
             text-align: center;
-            color:$text-primary-color;
+            color: $text-primary-color;
             font-weight: bold;
-            font-size: 12px;
-            padding: 3px 2px 0 2px;
+            font-size: 100%;
+            // @include media(font-size,12px,12px,36px);
+            // padding: 5px 2px 4px 2px;
+            @include media(padding,0 4px 0 4px,0 4px 0 4px,5px 2px 4px 2px);
+            // padding: 1px 4px 1px 4px;
             position: relative;
-            left: -14px;
-            bottom: 2px;
+            left: -29%;
+            bottom: 13%;
         }
     }
 }

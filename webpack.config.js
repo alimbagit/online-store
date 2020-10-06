@@ -71,6 +71,7 @@ module.exports = {
   ],
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
+    host: '0.0.0.0',
     port: 7700,
     historyApiFallback: true,
   },

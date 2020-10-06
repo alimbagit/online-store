@@ -3,7 +3,8 @@
 .cart-wrapper{
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
+    @include media(flex-direction,row,row, column);
 }
 
 .cart-items-list{
@@ -11,21 +12,29 @@
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: flex-start;
-    width: 730px;
+    flex-direction: column;
+    flex-grow: 2;
+    @include media(width,100%,100%, 100%);
 }
 
 .to-checkout{
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    width: 250px;
+    justify-content: flex-start;
+    align-items: flex-end;
+    @include media(align-items,flex-start,flex-start,flex-end);
+    width: 100%;
+    margin-left: 20px;
+    @include media(margin-left,80px,80px,0);
     button{
         @include button-primary-light;
-        width: 160px;
+        margin-top: 15px;
     }
 
     span{
         font-weight: bold;
-        margin-bottom: 15px;;
+        margin-bottom: 15px;
+        @include font-size-normal;
     }
 }

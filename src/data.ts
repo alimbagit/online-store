@@ -677,7 +677,7 @@ export const data: Category = {
       ],
     },
     {
-      description: "wifi роутеры и сетевое оборудование для малых сетей",
+      description: "wifi роутеры и сетевое оборудование",
       img:
         "https://c.dns-shop.ru/thumb/st1/fit_width/120/120/22749734ca88d12f0128caec8d985efc/4b36c9af4df3aca88c711ab004c927e3959c8e497cff2bcea2ecd374d4aa27e7.jpg",
       name: "net-easy",

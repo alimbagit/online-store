@@ -2,7 +2,7 @@
 
 header{
     background-color: $primary-color;
-    height: 45px;
+    @include media(height,45px,45px,120px);
     position: fixed;
     width: 100%;
     top: 0;
@@ -14,7 +14,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: $width-main;
+    @include width-main;
     margin-left: auto;
     margin-right: auto;
     height: 100%;
@@ -22,5 +22,7 @@ header{
 
 .button-to-main{
     text-decoration: none;
+    margin-left: 15px;
     color: white;
+    @include media(font-size,15px,15px,45px);
 }

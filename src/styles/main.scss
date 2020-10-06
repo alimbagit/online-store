@@ -8,18 +8,22 @@ body {
 }
 
 h2 {
+    margin-left: 15px;
     color: $text-primary-color;
     margin-bottom: 10px;
+    @include media(font-size, 26px, 26px, 60px);
 }
 
-h3 {
+h4 {
+    margin-left: 15px;
     color: $text-primary-color;
+    @include media(font-size, 19px, 19px, 40px);
 }
 
 .main-wrapper {
-    margin-top: 70px;
     margin-left: auto;
     margin-right: auto;
-    width: $width-main;
+    padding: 0 10px;
+    @include width-main;
+    @include media(margin-top, 80px, 80px, 170px);
 }
-

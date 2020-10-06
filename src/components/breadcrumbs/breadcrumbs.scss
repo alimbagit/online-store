@@ -2,11 +2,11 @@
 
 .wrapper-breadcrambs {
     margin: 0 0 10px 0px;
-
+    max-height: 30px;
     a {
         text-decoration: none;
         color: $text-secondary-color;
-        font-size: 12px;
+        @include media(font-size,12px,12px,30px);
         &:hover {
             color: $text-primary-color;
         }

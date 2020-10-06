@@ -41,7 +41,7 @@ const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
 
   return (
     <div className="one-item-cart">
-      <div className="item-image-wrapper">
+      <div className="item-image-cart-wrapper">
         <img src={stateItem.img} />
       </div>
       <div className="middle-item-cart">

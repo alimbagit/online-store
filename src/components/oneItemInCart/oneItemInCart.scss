@@ -6,8 +6,8 @@ $width-total-price: 200px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    width: 665px;
-    height: 185px;
+    width: 100%;
+    @include media(height,185px,185px,230px);
     background-color: white;
     margin: 15px 0;
     padding: 15px;
@@ -17,16 +17,15 @@ $width-total-price: 200px;
         @include button-primary;
         
         &.delete-item{
-            width: 175px;
+            width: 100%;
         }
     }
 
-    
-
     .price {
+        @include price;
         font-weight: bold;
         font-size: 20px;
-        margin-top: 53px;
+        @include media (margin-top,53px,53px,10px);
     }
 
     .middle-item-cart,
@@ -36,25 +35,26 @@ $width-total-price: 200px;
         justify-content: space-between;
         align-content: center;
         height: 100%;
-        width: 200px;
+        width: 240px;
 
         .item-description {
             text-align: left;
-            font-size: 17px;
-            margin-top: 55px;
+            @include media(margin-top,55px,55px,25px);
+            @include font-size-normal;
         }
 
         .counter {
             align-self: flex-end;
+            margin-right: 30px;
 
             input {
                 padding: 8px 10px;
                 border: none;
                 height: auto;
-                width: 20px;
+                @include media(width,20px,20px,55px);
                 margin: 0px;
                 text-align: center;
-                font-size: 16px;
+                @include font-size-normal;
 
                 &:focus{
                     outline: none;
@@ -69,7 +69,7 @@ $width-total-price: 200px;
     }
 }
 
-.item-image-wrapper {
+.item-image-cart-wrapper {
     width: 150px;
     padding: 10px;
     align-self: center;

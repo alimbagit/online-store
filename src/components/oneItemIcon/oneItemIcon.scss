@@ -4,13 +4,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-end;
-    width: 200px;
-    height: 330px;
     background-color: white;
     margin: 15px;
     padding: 15px;
     @include border-card;
+    @include media(width, 15%, 19%, 43.5%);
+    @include media(height, 340px, 340px, 600px);
 
     &:hover {
         button {
@@ -31,21 +30,20 @@
     .price {
         @include price;
     }
-    .item-description{
+    .item-description {
         text-align: left;
-        font-size: 15px;
+        @include media(font-size, 15px, 15px, 38px);
     }
 }
 
 .item-image-wrapper {
-    height: 200px;
     padding: 10px;
     display: flex;
     align-content: center;
+    @include media(height, 150px, 150px, 250px);
     img {
         max-width: 100%;
         max-height: 100%;
-        // position: relative;
         margin: auto;
     }
 }

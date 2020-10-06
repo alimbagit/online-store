@@ -1,10 +1,29 @@
-$primary-color: #FF4F00;
+$primary-color: #ff4f00;
 $second-color: #f5f5f5;
 
 $text-primary-color: #414141;
 $text-secondary-color: #777777;
 $primary-font-family: "PT Sans", Helvetica, Arial, sans-serif;
-$width-main:1055px;
+
+@mixin media($name, $large, $middle, $small) {
+    @media screen and (max-device-width: 768px) {
+        #{$name}: $small;
+    }
+    @media screen and (min-device-width: 769px) and (max-device-width: 1200px) {
+        #{$name}: $middle;
+    }
+    @media screen and (min-device-width: 1201px) {
+        #{$name}: $large;
+    }
+}
+
+@mixin width-main {
+    @include media(width, 1200px, 1055px, 100%);
+}
+
+@mixin font-size-normal{
+    @include media(font-size,14px,14px,40px);
+}
 
 @mixin border-card {
     border-radius: 10px;
@@ -19,26 +38,33 @@ $width-main:1055px;
     padding: 8px 14px;
     border: 1px solid #d0d0d0;
     box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.2);
-    text-transform:uppercase;
+    text-transform: uppercase;
+    @include media(font-size, 13px, 13px, 30px);
 
     &:hover {
         background-image: linear-gradient(to bottom, $primary-color, #fc6018);
         cursor: pointer;
         color: white;
     }
-    &:focus{
+    &:focus {
         outline: none;
+    }
+    @media screen and (max-device-width: 768px) {
+        background-image: linear-gradient(to bottom, $primary-color, #e24800);
+        color: white;
+        border-radius: 15px;
+        padding: 20px 32px;
     }
 }
 
 @mixin button-primary-light {
     @include button-primary;
-    background-image: linear-gradient(to bottom,$primary-color, #e24800);
+    background-image: linear-gradient(to bottom, $primary-color, #e24800);
     color: white;
 }
 
-@mixin price{
+@mixin price {
+    @include media(font-size, 20px, 20px, 38px);
     font-weight: bold;
-    font-size: 20px;
     margin: 16px 0;
 }
