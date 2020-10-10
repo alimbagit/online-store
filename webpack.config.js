@@ -9,11 +9,10 @@ module.exports = {
 
   },
 
-
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
-    publicPath: "/",
+    path: path.resolve(__dirname, "/dist"),
+    filename:  "bundle.js",
+    publicPath: "/"
   },
   resolve: {
     extensions: [".webpack.js", ".web.js", ".js", ".ts", ".tsx", ".scss", ".png", ".jpg"],
@@ -57,7 +56,8 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[path][name].[ext]',
-              esModule:false
+              esModule:false,
+
             }
           },
         ],
@@ -70,7 +70,6 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, "dist"),
     host: '0.0.0.0',
     port: 7700,
     historyApiFallback: true,
