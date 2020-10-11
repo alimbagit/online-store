@@ -10,9 +10,9 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, "/dist"),
+    path: path.join(__dirname, "/dist"),
     filename:  "bundle.js",
-    publicPath: "/"
+    publicPath: "/",
   },
   resolve: {
     extensions: [".webpack.js", ".web.js", ".js", ".ts", ".tsx", ".scss", ".png", ".jpg"],
@@ -57,7 +57,7 @@ module.exports = {
             options: {
               name: '[path][name].[ext]',
               esModule:false,
-
+              emitFile: true
             }
           },
         ],

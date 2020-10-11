@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode=development --open",
     "build": "webpack --mode=production",
-    "start": "nodemon start.js"
+    "start": "node start.js"
   },
   "name": "online-store",
   "version": "1.0.0",

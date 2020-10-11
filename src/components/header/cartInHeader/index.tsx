@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CartState } from "redux/rootReducer";
 import "./cartInHeader.scss";
+// import cartIcon from "./cart-icon.png";
 // import frfrf from "./cart-icon.png";
 
 const CartInHeader = () => {
