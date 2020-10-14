@@ -4,7 +4,8 @@
 
 [Ссылка](https://online-store-sigma.vercel.app) на собранную версию.
 
-##Сборка проекта и запуск
+## Сборка проекта и запуск
+
 ```yarn build && yarn start```
 
 Так же доступен [докер контейнер](https://hub.docker.com/repository/docker/alimba/online-store).
