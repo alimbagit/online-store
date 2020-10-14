@@ -1,7 +1,6 @@
 @import "styles/theme.scss";
 
-$width-total-price: 200px;
-
+// Обертка для одного товара в корзине
 .one-item-cart {
     display: flex;
     justify-content: space-between;
@@ -13,21 +12,23 @@ $width-total-price: 200px;
     padding: 15px;
     @include border-card;
 
+    // Кнопки на карточке товара
     button {
         @include button-primary;
         
+        // Кнопка удаления
         &.delete-item{
             width: 100%;
         }
     }
-
+    // цена данного товара
     .price {
         @include price;
         font-weight: bold;
         font-size: 20px;
         @include media (margin-top,53px,53px,10px);
     }
-
+    // Разные части одной карточки товара
     .middle-item-cart,
     .right-item-cart {
         display: flex;
@@ -37,13 +38,14 @@ $width-total-price: 200px;
         height: 100%;
         width: 240px;
 
+        // Описание товара
         .item-description {
             text-align: left;
             @include media(margin-top,55px,55px,25px);
             @include font-size-normal;
         }
 
-        .counter {
+        .counter { //Количество данного товара в корзине
             align-self: flex-end;
             margin-right: 30px;
 
@@ -62,13 +64,13 @@ $width-total-price: 200px;
             }
         }
     }
-
+    // Середина карточки товара
     .middle-item-cart {
         flex-grow: 1;
         margin: 0 10px;
     }
 }
-
+// Обертка для изображения товара
 .item-image-cart-wrapper {
     width: 150px;
     padding: 10px;

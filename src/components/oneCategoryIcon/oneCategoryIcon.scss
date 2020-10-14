@@ -1,5 +1,6 @@
 @import "styles/theme.scss";
 
+// Иконка одной подкатегории в списке подкатегорий каталога
 .one-category {
     display: flex;
     flex-direction: column;
@@ -14,10 +15,11 @@
     text-decoration: none;
     color: $text-primary-color;
     font-weight: 500;
-    &:hover{
-         box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    // при наведении на карточку у нее появляются тени
+    &:hover {
+        box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.2);
     }
-
+    //Если устройство мобильное, то подкатегория выглядит иначе
     @media screen and (max-device-width: 768px) {
         flex-direction: row;
         justify-content: flex-start;
@@ -28,22 +30,24 @@
         padding: 30px 20px;
         @include border-card;
     }
-
+    // Надпись на карточке подкатегории
     .description-category {
-        @include media(font-size,14px,14px,40px);
-        @include media( text-align,center,center,left);
+        @include media(font-size, 14px, 14px, 40px);
+        @include media(text-align, center, center, left);
     }
 
+    // Обертка для изображения подкатегории
     .category-image-wrapper {
         height: 80px;
         display: flex;
         align-content: center;
-        
+
         img {
             max-width: 100%;
             max-height: 100%;
             margin: auto;
-
+            
+            //Если устройство мобильное, то изображение подкатегории скрывается
             @media screen and (max-device-width: 768px) {
                 display: none;
             }

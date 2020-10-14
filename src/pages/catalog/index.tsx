@@ -16,13 +16,13 @@ interface Params {
   category: string;
 }
 const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
-  const numberOfItemsInPage = 12;
-  const [currentCategory, setCurrentCategory] = useState<Category>();
-  const [currentPageNumber, setCurrentPageNumber] = useState(1);
-  const [totalPageItems, setTotalPageItems] = useState(1);
-  const { category } = useParams<Params>();
+  const numberOfItemsInPage = 12; //Количество товаров на одной странице
+  const [currentCategory, setCurrentCategory] = useState<Category>(); //Текущая категория, отображаемая в каталоге
+  const [currentPageNumber, setCurrentPageNumber] = useState(1); //Текущий номер страницы товаров для текущей категории
+  const [totalPageItems, setTotalPageItems] = useState(1); //Количество страниц товаров в текущей категории
+  const { category } = useParams<Params>(); //Берем параметр из адресной строки
 
-  //Загрузка категории, товары которой будет отображаться на текущей странице каталога
+  /**Загрузка категории, товары которой будет отображаться на текущей странице каталога*/
   const LoadData = () => {
     const tmpCategory = GetCategory(
       location.pathname,
@@ -32,7 +32,7 @@ const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
     setCurrentCategory(tmpCategory);
   };
 
-  //Загрузка общего количества товаров в текущей категории
+  /**Загрузка общего количества товаров в текущей категории*/
   const LoadCountItemsInCategory = () => {
     const tmpCountItems = GetCountItemsInCategory(location.pathname);
     let tmpPageItems = Math.floor(tmpCountItems / numberOfItemsInPage);
@@ -40,6 +40,9 @@ const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
     setTotalPageItems(tmpPageItems);
   };
 
+  /**Установить текущую страницу товаров
+   * @param pageNumber номер страницы товаров
+   */
   const SetCurrentPage = (pageNumber: number) => {
     if (pageNumber != currentPageNumber) {
       setCurrentPageNumber(pageNumber);
@@ -51,6 +54,7 @@ const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
     LoadCountItemsInCategory();
   }, [category, currentPageNumber]);
 
+  /**Если рекурсия не достигла конца path, то продолжаем поиск  */
   if (match.url !== location.pathname) {
     return <Route path={`${match.url}/:category`} component={Catalog} />;
   }
@@ -65,7 +69,8 @@ const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
       )}
       <div className="catalog-list">
         {currentCategory?.categories.map((category) => (
-          <OneCategoryIcon
+          // Одна категория
+          <OneCategoryIcon 
             key={category.name}
             pathname={
               location.pathname +
@@ -84,6 +89,7 @@ const Catalog: React.FC<RouteComponentProps> = ({ location, match }) => {
           <OneItemIcon key={item.id} {...item} />
         ))}
       </div>
+      {/* Навигация по страницам товаров */}
       <NavigateInItems
         totalPageItems={totalPageItems}
         SetCurrentPage={SetCurrentPage}

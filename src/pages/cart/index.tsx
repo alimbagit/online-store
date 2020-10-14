@@ -6,7 +6,7 @@ import { RouteComponentProps } from "react-router-dom";
 import "./cart.scss"
 
 const Cart = ({ history }: RouteComponentProps) => {
-  /** Берем массив текущих товаров в корзине */
+  /** Берем массив текущих товаров в корзине, их общее количество и цену */
   const stateCartItems = useSelector((state: CartState) => state.items);
   const statePriceItems = useSelector((state: CartState) => state.totalPrice);
   const stateTotalItems = useSelector((state: CartState) => state.totalItems);
@@ -21,11 +21,14 @@ const Cart = ({ history }: RouteComponentProps) => {
     <div>
       <h2>Корзина</h2>
       <div className="cart-wrapper">
+        {/* Список товаров в корзине */}
         <div className="cart-items-list">
           {stateCartItems.map((itemCart, index) => (
+            // Один товар с кнопками изменения количества и удаления
             <OneItemInCart key={index} itemCart={itemCart} />
           ))}
         </div>
+        {/* Инормация об общем количестве и цене выбранных товаров */}
         <div className="to-checkout">
           <span>Количество товаров: {stateTotalItems}</span>
           <span> На общую сумму: {statePriceItems} Р</span>

@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CartState } from "redux/rootReducer";
 import "./cartInHeader.scss";
-// import cartIcon from "./cart-icon.png";
-// import frfrf from "./cart-icon.png";
 
+/**Иконка корзины в заголовке */
 const CartInHeader = () => {
-  const totalCount = useSelector((state: CartState) => state.totalItems);
-  const totalPrice = useSelector((state: CartState) => state.totalPrice);
+  const totalCount = useSelector((state: CartState) => state.totalItems);//Общее количество товаров
+  const totalPrice = useSelector((state: CartState) => state.totalPrice); //Общая цена
 
   return (
     <div className="cart-in-header">

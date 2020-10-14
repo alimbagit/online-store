@@ -1,27 +1,29 @@
 @import "styles/theme.scss";
 
+//Обертка для страницы заказа
 .wrapper-checkout {
     display: flex;
     justify-content: space-between;
-    width: 750px;
-    @include media(width,750px,750px,100%);
-    @include media(flex-direction,row,row,column);
-    // @include media(margin-left,0,0,25px);
+    @include media(width,750px,750px,100%); //Используем нашу пользовательскую примесь чтобы указать ширину для разных мониторов
+    @include media(flex-direction,row,row,column); //Указываем положение формы заказа и товаров относительно друг друга
     margin-left: 15px;
+
+    //Информация о выбранных товарах
     .checkout-info {
         display: flex;
         flex-direction: column;
+        margin-bottom: 65px;
 
         div {
             margin-top: 10px;
             @include font-size-normal;
         }
-
+        //Общее количество и цена товаров
         .total-info {
             @include font-size-normal;
             font-weight: bold;
         }
-
+        //Товары
         .checkout-items {
             display: flex;
             flex-direction: column;

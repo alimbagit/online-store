@@ -1,5 +1,5 @@
 import { CartActions } from "./actions";
-import { ADD_TO_CART, REMOVE_FROM_CART, CHANGE_ITEM_COUNT } from "./types";
+import { ADD_TO_CART, REMOVE_FROM_CART, CHANGE_ITEM_COUNT, CLEAR_CART } from "./types";
 
 export interface CartItemProps {
   id: string;
@@ -12,6 +12,8 @@ export interface CartState {
   totalPrice: number;
   totalItems: number;
 }
+
+/**Корзина изначально пуста */
 const initialState: CartState = { items: [], totalItems: 0, totalPrice: 0 };
 
 export const rootReducer = (
@@ -20,6 +22,8 @@ export const rootReducer = (
 ): CartState => {
   const new_state = { ...state };
   switch (action.type) {
+
+    /**Добавление товара в корзину */
     case ADD_TO_CART:
       new_state.items = [...state.items];
       let indexAdd = new_state.items.findIndex(
@@ -35,7 +39,7 @@ export const rootReducer = (
       new_state.totalItems++;
       new_state.totalPrice += action.payload.price;
       return new_state;
-
+    /**удаление товара из корзины */
     case REMOVE_FROM_CART:
       let indexRemove = state.items.findIndex(
         (element) => element.id === action.payload
@@ -47,7 +51,7 @@ export const rootReducer = (
         new_state.items = state.items.filter((_, index) => index !== indexRemove);
       }
       return new_state;
-
+    /**установка количества одного товара в корзине */
     case CHANGE_ITEM_COUNT:
       if (action.payload.changeCount <= 0) action.payload.changeCount = 1;
       let indexChange = new_state.items.findIndex(
@@ -63,6 +67,9 @@ export const rootReducer = (
       }
 
       return new_state;
+    /**очистка корзины от товаров */
+    case CLEAR_CART:
+      return initialState;
 
     default:
       return new_state;

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { CartState } from "redux/rootReducer";
 import OneItemInCheckout from "components/oneItemInCheckout";
 import CheckoutForm from "components/checkoutForm";
 import ModalWindow from "components/modalWindow";
 import { RouteComponentProps } from "react-router-dom";
 import "./checkout.scss";
+import { clearCart } from "redux/actions";
 
 /**
  * Страница оформления заказа
@@ -29,7 +30,10 @@ const Checkout = ({ history }: RouteComponentProps) => {
     setIsVisibleModalWindow(true);
   };
 
+  const dispatch = useDispatch();
+
   const CloseModalWindow = () => {
+    dispatch(clearCart());
     history.push("/catalog");
   };
 
@@ -38,12 +42,13 @@ const Checkout = ({ history }: RouteComponentProps) => {
       <h2>Оформление заказа</h2>
       <div className="wrapper-checkout">
         <div className="checkout-info">
+          {/* Товары, оформляемые на текущий момент */}
           <div className="checkout-items">
             {checkoutItems.map((item, index) => (
               <OneItemInCheckout key={index} itemCheckout={item} />
             ))}
           </div>
-
+              {/*Общая информация об оформляемых товарах */}
           <div className="total-info">
             <hr />
             Товаров: {totalItems} шт

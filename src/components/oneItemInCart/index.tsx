@@ -9,32 +9,41 @@ interface PropsOneItemInCart {
   itemCart: CartItemProps;
 }
 
+/**Один товар на странице корзины
+ * @param itemCart - отображаемый товар
+*/
 const OneItemInCart = ({ itemCart }: PropsOneItemInCart) => {
-  const [stateItem, setStateItem] = useState(initializeItem);
+  const [stateItem, setStateItem] = useState(initializeItem);//Текущий товар
 
   const dispatch = useDispatch();
   useEffect(() => {
     LoadItem();
   });
+
+  /**Загрузка данного элемента из базы по id */
   const LoadItem = () => {
     let item = GetItemById(itemCart.id);
     if (item) setStateItem(item);
   };
 
+  /**Изменения количества данного товара в корзине */
   const ChangeCountItem = (event: React.FormEvent<HTMLInputElement>) => {
     if (event.currentTarget.value != "") {
       ChangeCountById(parseInt(event.currentTarget.value));
     }
   };
 
+  /**Нажатие на кнопки +-*/
   const ClickButtonChanges = (changeToOneValue: number) => {
     ChangeCountById(changeToOneValue + itemCart.count);
   };
 
+  /**При нажатии на кнопки регулирования количества товара вызывается соотвествующий action */
   const ChangeCountById = (changeValue: number) => {
     dispatch(changeItemCount(itemCart.id, changeValue));
   };
 
+  /**Нжатие на кнопку "убрать из корзины" */
   const RemoveItemById = (id: string) => {
     dispatch(removeFromCart(id));
   };

@@ -1,31 +1,33 @@
 @import "styles/theme.scss";
 
+// Обертка для наигации
 .navigate-wrapper {
-    @include width-main;
+    width: auto;
     display: flex;
     justify-content: center;
     align-content: center;
-    margin-bottom: 40px;
     background-color: white;
     @include media(height,55px,55px,150px);
-    @include border-card;
-    margin: 0px 15px;
-    margin-bottom: 20px;
+    @include border-card; //Навигация помещается в карточку с тенями
+    margin: 20px 15px 20px 15px;
     @include media(margin-top,0,0,25px);
 
+    // Страницы навигации
     div {        
         text-decoration: none;
         text-align: center;
         color: $text-primary-color;
         @include font-size-normal;
         @include media(width,50px,50px,150px);
+
+        // При наведении принимают другой оттенок
         &:hover {
             background-color: rgb(255, 237, 230);
             color: $primary-color;
             cursor: pointer;
         }
     }
-
+    // Текущая страница навигации
     .current-page {
         border-bottom: 5px solid $primary-color;
     }

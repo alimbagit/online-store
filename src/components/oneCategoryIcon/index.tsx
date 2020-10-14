@@ -7,6 +7,13 @@ interface PropsOneCategoryIcon {
   pathname: string;
   img: string;
 }
+
+/**
+ * Представление однго подкаталога в списке подкаталогов
+ * @param img - икнока подкаталога
+ * @param pathname - путь к подакаталогу
+ * @param description - надипись на подкаталоге
+ */
 const OneCategoryIcon = ({
   img,
   pathname,

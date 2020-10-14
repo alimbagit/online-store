@@ -1,10 +1,13 @@
-$primary-color: #ff4f00;
-$second-color: #f5f5f5;
+$primary-color: #ff4f00; //Главный цвет 
+$second-color: #f5f5f5; //второстепенный цвет
 
-$text-primary-color: #414141;
-$text-secondary-color: #777777;
-$primary-font-family: "PT Sans", Helvetica, Arial, sans-serif;
+$text-primary-color: #414141; //Главный цвет текста
+$text-secondary-color: #777777; //Второстепенный цвет текста
+$primary-font-family: "PT Sans", Helvetica, Arial, sans-serif; //Главный набор шрифтов
 
+//Примесь позволяющая устанавливать разные значения одного атрибута для разной ширины монитора
+//name - название атрибута
+//$large, $middle, $small - значения для разной ширины монитора
 @mixin media($name, $large, $middle, $small) {
     @media screen and (max-device-width: 768px) {
         #{$name}: $small;
@@ -17,20 +20,24 @@ $primary-font-family: "PT Sans", Helvetica, Arial, sans-serif;
     }
 }
 
+//Ширина контента для всего приложения
 @mixin width-main {
-    @include media(width, 1200px, 1055px, 100%);
+    @include media(width, 1200px, 900px, 100%);
 }
 
+//Раземеры шрифта обычного текста
 @mixin font-size-normal{
     @include media(font-size,14px,14px,40px);
 }
 
+//Рамки и тени для карточек
 @mixin border-card {
     border-radius: 10px;
     border: 1px solid #d0d0d0;
     box-shadow: 0.6px 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
+//Главные стили для кнопок
 @mixin button-primary {
     border: 1px solid $second-color;
     background-color: transparent;
@@ -57,12 +64,14 @@ $primary-font-family: "PT Sans", Helvetica, Arial, sans-serif;
     }
 }
 
+//Главные стили для кнопок, которые всегда должны быть в подсвеченном состоянии
 @mixin button-primary-light {
     @include button-primary;
     background-image: linear-gradient(to bottom, $primary-color, #e24800);
     color: white;
 }
 
+//Стили для цен
 @mixin price {
     @include media(font-size, 20px, 20px, 38px);
     font-weight: bold;

@@ -7,16 +7,22 @@ interface PropsNavigateInItems {
   SetCurrentPage: (current: number) => void;
 }
 
-/**Панель навигации по страницам товарам одного подкаталога */
+/**Панель навигации по страницам товарам одного подкаталога 
+ * @param totalPageItems - Общее количество страниц данного каталога
+ * @param SetCurrentPage - Каллбэк функция для указания текущей страницы товаров для вышестоящего элемента
+ * @param currnetPage - текущая страницв товаров
+*/
 const NavigateInItems = ({
   totalPageItems,
   SetCurrentPage,
   currentPage,
 }: PropsNavigateInItems) => (
   <div className="navigate-wrapper">
+    {/* Перемотка на самую первую страницу */}
     <div onClick={() => SetCurrentPage(1)}>
-      <p>&lt;&lt;</p>
+      <p>&lt;&lt;</p> 
     </div>
+    {/* перемотка на одну страницу назад */}
     <div
       onClick={() => {
         currentPage > 1 && SetCurrentPage(currentPage - 1);
@@ -24,6 +30,7 @@ const NavigateInItems = ({
     >
       <p>&lt;</p>
     </div>
+    {/* Список страниц */}
     {new Array(totalPageItems).fill(1).map((value, index) => (
       <div
         key={index}
@@ -33,6 +40,7 @@ const NavigateInItems = ({
         <p>{index + 1}</p>
       </div>
     ))}
+    {/* перемотка на одну страницу вперед */}
     <div
       onClick={() => {
         currentPage < totalPageItems && SetCurrentPage(currentPage + 1);
@@ -40,6 +48,7 @@ const NavigateInItems = ({
     >
       <p>&gt;</p>
     </div>
+    {/* перемотка на самую последнюю страницу */}
     <div onClick={() => SetCurrentPage(totalPageItems)}>
       <p>&gt;&gt;</p>
     </div>

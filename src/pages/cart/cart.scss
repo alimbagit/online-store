@@ -1,5 +1,6 @@
 @import "styles/theme.scss";
 
+// Обертка для страницы "корзина"
 .cart-wrapper{
     display: flex;
     align-items: flex-start;
@@ -7,6 +8,7 @@
     @include media(flex-direction,row,row, column);
 }
 
+// Стили для списка товаров в корзине 
 .cart-items-list{
     display: flex;
     flex-wrap: wrap;
@@ -17,6 +19,7 @@
     @include media(width,100%,100%, 100%);
 }
 
+// Блок информации о выбранных товарах
 .to-checkout{
     margin-top: 20px;
     display: flex;
@@ -27,11 +30,14 @@
     width: 100%;
     margin-left: 20px;
     @include media(margin-left,80px,80px,0);
+
+    // Кнопка "оформить заказ"
     button{
         @include button-primary-light;
         margin-top: 15px;
     }
 
+    // Надписи общеее количество и цена товаров
     span{
         font-weight: bold;
         margin-bottom: 15px;

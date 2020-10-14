@@ -8,6 +8,7 @@
 
 ### Сборка проекта и запуск
 
-```yarn build && yarn start```
+```yarn build && yarn start``` 
+Предварительно установите зависимости
 
 Так же доступен [докер контейнер](https://hub.docker.com/repository/docker/alimba/online-store).

@@ -10,20 +10,24 @@ import "./oneItemIcon.scss";
  * @returns ReactNode
  */
 const OneItemIcon = (item: ItemInterface) => {
-  const [stateButton, setStateButton] = useState(false);
+  const [stateButton, setStateButton] = useState(false);//Хранит состояние кнопки "в крозину"
 
-  const cartItemsState = useSelector((state: CartState) => state.items);
+  const cartItemsState = useSelector((state: CartState) => state.items);//Берем массив товаров из корзины
+
   const dispatch = useDispatch();
+
+  /**Событие нажатия кнопки на карточке товара */
   const EventToCartListener = () => {
     if (stateButton) {
-      dispatch(removeFromCart(item.id));
+      dispatch(removeFromCart(item.id)); //Если он корзине то, удаляем его оттуда
       setStateButton(false);
     } else {
-      dispatch(addToCart({ id: item.id, price: item.price }));
+      dispatch(addToCart({ id: item.id, price: item.price })); //Если его нет в корзине, то добавляем его туда
       setStateButton(true);
     }
   };
 
+  /**Проверка нахождения данного товара в корзине */
   const CheckItemInCart = () => {
     let index = cartItemsState.findIndex((element) => element.id === item.id);
     setStateButton(index != -1);

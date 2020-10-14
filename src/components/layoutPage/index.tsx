@@ -5,6 +5,7 @@ interface PropsLayout {
   children: JSX.Element;
 }
 
+/**Такого шаблона придерживаются все страницы приложения */
 const Layout: React.FC<PropsLayout> = ({ children }) => (
   <div>
     <Header />

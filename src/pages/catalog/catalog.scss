@@ -1,5 +1,6 @@
 @import "styles/theme.scss";
 
+//Классы для оберткок списка подкаталогов и товаров
 .catalog-items-list, .catalog-list{
     display: flex;
     flex-wrap: wrap;

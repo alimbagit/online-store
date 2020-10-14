@@ -1,5 +1,6 @@
 @import "styles/theme.scss";
 
+// Обертка для иконки корины в заголовке
 .cart-in-header {
     @include media(width, 9%, 9%, 34%);
     a {
@@ -16,15 +17,16 @@
             @include media(font-size, 14px, 14px, 40px);
         }
     }
-
+    // Обертка для изображения корзинки
     .icon-wrapper {
         display: flex;
         align-self: center;
         @include media(width, 50px, 50px, 135px);
         img {
             @include media(height, 30px, 30px, 80px);
-            filter: invert(100%);
+            filter: invert(100%); //Оригинальная корзинка черная
         }
+        // Общее количество - кружок с циверкой в заголовке
         .total-count {
             background-color: white;
             z-index: 10;
@@ -35,10 +37,7 @@
             color: $text-primary-color;
             font-weight: bold;
             font-size: 100%;
-            // @include media(font-size,12px,12px,36px);
-            // padding: 5px 2px 4px 2px;
             @include media(padding,0 4px 0 4px,0 4px 0 4px,5px 2px 4px 2px);
-            // padding: 1px 4px 1px 4px;
             position: relative;
             left: -29%;
             bottom: 13%;

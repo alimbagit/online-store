@@ -16,11 +16,17 @@ export const initializeItem: ItemInterface = {
   price: 0,
 };
 
+/**Интерфейс категории 
+ * @param name - имя каталога в базе
+ * @param categories - подкатегории
+ * @param items - товары, относящиеся данной категории
+*/
 export interface Category extends Base {
   name: string;
   categories: Category[];
   items: ItemInterface[];
 }
+
 /**
  * Основная страница каталога.
  * @see https://github.com/alimbagit/online-store
@@ -86,12 +92,17 @@ const FindCategory = (
   } else return false;
 };
 
+/**Возвращает товар по его id
+ * @param id - идентификатор
+ * @returns если возвращает false, это говорит о том, что по данному id товар не найден
+ */
 export const GetItemById = (id: string): ItemInterface | false => {
   let item = FindItemById(id, data);
   if (item) return item;
   return false;
 };
 
+/**Поис товара по id */
 const FindItemById = (
   id: string,
   category: Category
@@ -108,8 +119,9 @@ const FindItemById = (
   }
 };
 
-
-/**Возвращает последовательность description по последовательности names */
+/**Возвращает последовательность description по пути (последовательности name) 
+ * @return возвращает пустой массив если не найдена последовательность
+*/
 export const GetDescriptionsByPath = (path: string): string[] => {
   let namesArray = path.split("/");
   namesArray.splice(0, 2);
@@ -119,6 +131,7 @@ export const GetDescriptionsByPath = (path: string): string[] => {
   return [];
 }
 
+/**Поиск */
 const FindDescriptionsByPath = (
   category: Category,
   names: string[],
