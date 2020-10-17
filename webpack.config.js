@@ -1,21 +1,29 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
-
 /** @type {import('webpack').Configuration} */
 module.exports = {
   entry: {
     app: path.resolve(__dirname, "src", "index.tsx"),
-
   },
-
+  devtool: "source-map",
+  context: path.resolve(__dirname, "src"),
   output: {
     path: path.join(__dirname, "/dist"),
-    filename:  "bundle.js",
+    filename: "bundle.js",
     publicPath: "/",
   },
   resolve: {
-    extensions: [".webpack.js", ".web.js", ".js", ".ts", ".tsx", ".scss", ".png", ".jpg"],
+    extensions: [
+      ".webpack.js",
+      ".web.js",
+      ".js",
+      ".ts",
+      ".tsx",
+      ".scss",
+      ".png",
+      ".jpg",
+    ],
     modules: ["node_modules", path.resolve(__dirname, "src")],
   },
   module: {
@@ -41,27 +49,31 @@ module.exports = {
       },
       {
         test: /\.(sass|scss)$/,
-        use: [{
-          loader: "style-loader" // creates style nodes from JS strings
-        }, {
-          loader: "css-loader" // translates CSS into CommonJS
-        }, {
-          loader: "sass-loader" // compiles Sass to CSS
-        }]
+        use: [
+          {
+            loader: "style-loader", // creates style nodes from JS strings
+          },
+          {
+            loader: "css-loader", // translates CSS into CommonJS
+          },
+          {
+            loader: "sass-loader", // compiles Sass to CSS
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[path][name].[ext]',
-              esModule:false,
-              emitFile: true
-            }
+              name: "[path][name].[ext]",
+              esModule: false,
+              emitFile: true,
+            },
           },
         ],
-      }
+      },
     ],
   },
   plugins: [
@@ -70,7 +82,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    host: '0.0.0.0',
+    host: "0.0.0.0",
     port: 7700,
     historyApiFallback: true,
   },
