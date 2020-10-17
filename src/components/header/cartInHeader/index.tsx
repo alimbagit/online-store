@@ -6,15 +6,8 @@ import "./cartInHeader.scss";
 
 /**Иконка корзины в заголовке */
 const CartInHeader = () => {
-<<<<<<< HEAD
   const totalCount = useSelector((state: CartState) => state.totalItems);//Общее количество товаров
   const totalPrice = useSelector((state: CartState) => state.totalPrice); //Общая цена
-
-=======
-  const totalCount = useSelector((state: CartState) => state.totalItems);
-  const totalPrice = useSelector((state: CartState) => state.totalPrice);
-  console.log('asd')
->>>>>>> Добавлена возмонжность отладки
   return (
     <div className="cart-in-header">
       <Link to="/cart">
