@@ -4,7 +4,7 @@
   "compilerOptions": {
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./",
+    "rootDir": "./src",
     "baseUrl": "./src",
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
